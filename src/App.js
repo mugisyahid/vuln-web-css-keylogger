@@ -18,6 +18,15 @@ function App() {
         >
           Learn React
         </a>
+        <form method="POST" action="/upload-css" enctype="multipart/form-data">
+    <div>
+        <label>Select your profile picture:</label>
+        <input type="file" name="evil_css" />
+    </div>
+    <div>
+        <input type="submit" name="btn_evil_css" value="Upload" />
+    </div>
+</form>
       </header>
     </div>
   );
