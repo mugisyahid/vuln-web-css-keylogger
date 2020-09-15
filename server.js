@@ -15,7 +15,6 @@ const storage = multer.diskStorage({
     },
     // By default, multer removes file extensions so let's add them back
     filename: function(req, file, cb) {
-        console.log(file.originalname)
         cb(null, file.originalname );
     }
 });
@@ -28,9 +27,8 @@ app.get('/ping', function (req, res) {
  return res.send('pong');
 });
 
-app.post('/upload-css', (req, res) => {
-    // 'profile_pic' is the name of our file input field in the HTML form
-    let upload = multer({ storage: storage, fileFilter: cssFilter.cssFilter  }).single('evil_css');
+app.post('/development', (req, res) => {
+    let upload = multer({ storage: storage, fileFilter: cssFilter.cssFilter  }).single('css');
 
     upload(req, res, function(err) {
         // req.file contains information of uploaded file
@@ -40,8 +38,7 @@ app.post('/upload-css', (req, res) => {
             return res.send(req.fileValidationError);
         }
         else if (!req.file) {
-            console.log(req)
-            return res.send('Please select an css to upload');
+            return res.send('Please upload an css file');
         }
         else if (err instanceof multer.MulterError) {
             return res.send(err);
