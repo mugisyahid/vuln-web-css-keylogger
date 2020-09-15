@@ -6,10 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const port = process.env.PORT || 8080;
 const app = express();
 const cssFilter = require("./cssFilter");
-const evilFolder =
-  process.env.NODE_ENV === "production"
-    ? "evil_lfi_folder/"
-    : "public/evil_lfi_folder/";
+const evilFolder = path.join(__dirname, "build", "evil_lfi_folder/");
 const evilUrl = process.env.EVIL_URL || "http://localhost:8080/log/";
 const evilUrlUsername =
   process.env.EVIL_URL_USERNAME || "http://localhost:8080/log/username/";
@@ -73,6 +70,7 @@ app.post("/development", (req, res) => {
 
   upload(req, res, function (err) {
     console.log(req)
+    console.log(__dirname)
     if (req.fileValidationError) {
       return res.send(req.fileValidationError);
     } else if (!req.file) {
