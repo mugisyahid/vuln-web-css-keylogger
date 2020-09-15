@@ -6,7 +6,10 @@ const { v4: uuidv4 } = require("uuid");
 const port = process.env.PORT || 8080;
 const app = express();
 const cssFilter = require("./cssFilter");
-const evilFolder = "public/evil_lfi_folder/";
+const evilFolder =
+  process.env.NODE_ENV === "production"
+    ? "evil_lfi_folder/"
+    : "public/evil_lfi_folder/";
 const evilUrl = process.env.EVIL_URL || "http://localhost:8080/log/";
 const evilUrlUsername =
   process.env.EVIL_URL_USERNAME || "http://localhost:8080/log/username/";
