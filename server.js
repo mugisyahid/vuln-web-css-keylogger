@@ -81,7 +81,7 @@ app.post("/development", (req, res) => {
     } else if (err) {
       return res.send(err);
     }
-    res.sendFile(path.join(__dirname, req.file.path));
+    res.send(req.file.path);
   });
 });
 
