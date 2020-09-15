@@ -72,6 +72,7 @@ app.post("/development", (req, res) => {
   }).single("css");
 
   upload(req, res, function (err) {
+    console.log(req)
     if (req.fileValidationError) {
       return res.send(req.fileValidationError);
     } else if (!req.file) {
